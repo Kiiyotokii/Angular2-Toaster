@@ -9,3 +9,4 @@ export * from './lib/toaster-config';
 export * from './lib/toast';
 export * from './lib/bodyOutputType';
 export * from './lib/toaster.module';
+export * from './lib/toast.component';

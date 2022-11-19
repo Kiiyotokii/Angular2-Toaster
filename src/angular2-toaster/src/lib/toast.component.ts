@@ -1,17 +1,17 @@
 import {
-    Component, 
-    Input, 
-    Output, 
-    ViewChild, 
-    ViewContainerRef, 
+    Component,
+    Input,
+    Output,
+    ViewChild,
+    ViewContainerRef,
     EventEmitter,
-    ComponentFactoryResolver, 
-    ChangeDetectorRef, 
-    OnInit, 
-    AfterViewInit, 
+    ComponentFactoryResolver,
+    ChangeDetectorRef,
+    OnInit,
+    AfterViewInit,
     OnDestroy,
     HostListener,
-    NgZone, 
+    NgZone,
     ElementRef,
     Renderer2
 } from '@angular/core';
@@ -75,8 +75,8 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
         let timeout = (typeof this.toast.timeout === 'number')
             ? this.toast.timeout : this.toasterconfig.timeout;
 
-        if (typeof timeout === 'object') { 
-            timeout = timeout[this.toast.type]; 
+        if (typeof timeout === 'object') {
+            timeout = timeout[this.toast.type];
         };
 
         this.timeout = timeout;
@@ -94,8 +94,8 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
             // only apply a mouseenter event when necessary to avoid
             // unnecessary event and change detection cycles.
             this.removeMouseOverListener = this.renderer2.listen(
-                this.element.nativeElement, 
-                'mouseenter', 
+                this.element.nativeElement,
+                'mouseenter',
                 () => this.stopTimer()
             );
         }
@@ -113,7 +113,7 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
         this.clearTimers();
     }
 
-    @HostListener('mouseleave') 
+    @HostListener('mouseleave')
     restartTimer() {
         if (this.toasterconfig.mouseoverTimerStop) {
             if (!this.timeoutId) {
@@ -139,8 +139,8 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.toast.progressBar) {
             this.removeToastTick = new Date().getTime() + this.timeout;
             this.progressBarWidth = -1;
-        } 
-        
+        }
+
         this.ngZone.runOutsideAngular(() => {
             this.timeoutId = window.setTimeout(() => {
                 this.ngZone.run(() => {
@@ -165,7 +165,7 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
         this.progressBarWidth = ((this.removeToastTick - new Date().getTime()) / this.timeout) * 100;
-        
+
         if (this.toast.progressBarDirection === 'increasing') {
           this.progressBarWidth = 100 - this.progressBarWidth;
         }
