@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prepack": "[ ! -d src/angular2-toaster ] || npm run build",
+    "preinstall": "[ ! -d src/angular2-toaster ] || npm run build",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
